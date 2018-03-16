@@ -56,6 +56,44 @@ sh src/run_test_addition_model.sh
 DEBUG=1 sh src/run_test_addition_model.sh
 ```
 
+With Docker
+==================
+run docker
+-----
+
+```
+docker run -id --name=npi -v "$(pwd):/root/npi" python:3.6
+```
+
+setup
+-----
+
+```
+docker exec npi bash -c "cd /root/npi;pip install -r requirements.txt"
+```
+
+create training dataset
+-----------------------
+### create training dataset
+```
+docker exec -it npi bash -c "cd /root/npi;sh src/run_create_addition_data.sh"
+```
+
+training model
+------------------
+### Training Existing Model (-> if a model exists, use the model)
+```
+docker exec -it npi bash -c "cd /root/npi;sh src/run_train_addition_model.sh"
+```
+
+test model
+----------
+### check the model accuracy
+```
+docker exec -it npi bash -c "cd /root/npi;sh src/run_test_addition_model.sh"
+```
+
+
 Implementation FAQ
 ==================
 These are questions about implementation that I received in the past.
